@@ -1,15 +1,8 @@
 /*
-####################################################MODIFIED#####################################################################
-  OV767X - Camera Capture Raw Bytes and Send to PC
+ OV767X - Camera Capture Raw Bytes and Send to PC
 
-  This sketch reads a frame from the OmniVision OV7670 camera
+  This sketch reads a frame from the OmniVision OV7675 camera
   and sends the bytes to the PC via serial communication.
-
-  Circuit:
-    - Arduino Uno or similar board
-    - OV7670 camera module: (connections as mentioned in the original code)
-
-  This example code is in the public domain.
 */
 
 #include <Arduino_OV767X.h>
