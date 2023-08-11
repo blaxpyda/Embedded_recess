@@ -12,7 +12,7 @@ from google.cloud import vision_v1p4beta1 as vision
 # Initialize the Google Cloud Vision client
 client = vision.ImageAnnotatorClient()
 
-ser = serial.Serial('COM1', 115200)
+ser = serial.Serial('COM5', 9600)
 
 def receive_image(width, height):
     image_data = ser.read(width * height)
@@ -61,7 +61,7 @@ cv2.destroyAllWindows()
 
 
 #-------------------------------------------OCR--------------------------------------------------
-@background(schedule=1)  # Check every 5 seconds
+@background(schedule=1)  # Check every 1 second
 def check_plate_in_database(value):
     if Plate.objects.filter(plates=value).exists():
         # Perform some action, e.g., send notification
