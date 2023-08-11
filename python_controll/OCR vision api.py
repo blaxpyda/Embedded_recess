@@ -6,7 +6,7 @@ from google.cloud import vision_v1p4beta1 as vision
 # Initialize the Google Cloud Vision client
 client = vision.ImageAnnotatorClient()
 
-ser = serial.Serial('COM1', 115200)
+ser = serial.Serial('COM1', 9600)
 
 def receive_image(width, height):
     image_data = ser.read(width * height)
