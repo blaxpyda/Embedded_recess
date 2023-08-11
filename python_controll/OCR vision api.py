@@ -2,7 +2,7 @@ import serial
 import numpy as np
 import cv2
 from google.cloud import vision_v1p4beta1 as vision
-from google.protobuf.json_format import MessageToDict
+#from google.protobuf.json_format import MessageToDict
 
 # Initialize the Google Cloud Vision client
 client = vision.ImageAnnotatorClient()
@@ -30,29 +30,28 @@ def detect_objects(image):
 
     return object_labels
 
-def main():
-    width, height = 640, 480
-    while True:
-        image = receive_image(width, height)
 
-        # Perform object detection and label extraction
-        object_labels = detect_objects(image)
+width, height = 640, 480
+while True:
+    image = receive_image(width, height)
 
-        # Convert the image array back to an image
-        received_image = np.array(image, dtype=np.uint8)
+    # Perform object detection and label extraction
+    object_labels = detect_objects(image)
 
-        # Display the received image
-        cv2.imshow('Received Image', received_image)
+    # Convert the image array back to an image
+    received_image = np.array(image, dtype=np.uint8)
 
-        # Print detected object labels
-        if object_labels:
+    # Display the received image
+    cv2.imshow('Received Image', received_image)
+
+    # Print detected object labels
+    if object_labels:
             print('Detected Objects:', ', '.join(object_labels))
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
-    ser.close()
-    cv2.destroyAllWindows()
+ser.close()
+cv2.destroyAllWindows()
 
-if __name__ == "__main__":
-    main()
+
