@@ -11,7 +11,7 @@ def check_plate_in_database(list_of_labels):
             send_mail(
             'Matching Plate Found',
             f'A matching plate was found: {label}',
-            'donmukisajoseph@gmail.com',  # Replace with your email
+            'donmukisajoseph@gmail.com',
             ['arindaj33@gmail.com','zbagabo@gmail.com','donjosephmukisa@gmail.com'],
             fail_silently=False,
         )

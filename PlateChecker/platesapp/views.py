@@ -50,24 +50,24 @@ def detect_objects(image):
 
 
 width, height = 320, 240
-while True:
-    image = receive_image(width, height)
+
+image = receive_image(width, height)
 
     # Perform object detection and label extraction
-    object_labels = detect_objects(image)
+object_labels = detect_objects(image)
 
     # Convert the image array back to an image
-    received_image = np.array(image, dtype=np.uint8)
+received_image = np.array(image, dtype=np.uint8)
 
     # Display the received image
-    cv2.imshow('Received Image', received_image)
+cv2.imshow('Received Image', received_image)
 
     # Print detected object labels
-    if object_labels:
-            print('Detected Objects:', ', '.join(object_labels))
+if object_labels:
+        print('Detected Objects:', ', '.join(object_labels))
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+if cv2.waitKey(1) & 0xFF == ord('q'):
+        pass
 
 ser.close()
 cv2.destroyAllWindows()
