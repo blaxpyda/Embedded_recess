@@ -36,7 +36,7 @@ def detect_objects(image):
     return object_labels
 
 
-width, height = 640, 480
+width, height = 320, 240
 while True:
     image = receive_image(width, height)
 
