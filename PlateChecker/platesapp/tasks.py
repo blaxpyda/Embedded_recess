@@ -76,25 +76,5 @@ def check_plate_in_database(*args, **kwargs):
     ser.close()
     cv2.destroyAllWindows()
 
-    
-    
 
-    '''  
-    for label in object_labels:
-        print('2222222222222222222222222222222222222222222222222222222222222')
-        if Plate.objects.filter(plates=label).exists():
-            # Perform some action, e.g., send notification
-            print('33333333333333333333333333333333333333333333333333333333333333')
-            send_mail(
-            'ALERT MATCHING PLATE FOUND',
-            f'The Mtaching Plate : {label}',
-            'donmukisajoseph@gmail.com',
-            ['arindaj33@gmail.com','zbagabo@gmail.com','donjosephmukisa@gmail.com','donmukisajoseph@gmail.com'],
-            fail_silently=False,
-        )
-            print('Email Sent')
-            print(label)
-            
-'''
-
-
+check_plate_in_database()
