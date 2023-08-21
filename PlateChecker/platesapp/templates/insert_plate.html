@@ -2,12 +2,22 @@
 <html>
 <head>
     <title>Insert Plate</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" name="plate_value" placeholder="Enter a plate value">
-        <button type="submit">Insert</button>
-    </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="plate_value">Enter a plate value</label>
+                        <input type="text" class="form-control" id="plate_value" name="plate_value" placeholder="Enter a plate value">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Insert</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
