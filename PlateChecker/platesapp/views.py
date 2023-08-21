@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CarRegistrationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 # Create your views here.
 from .models import Plate
 from .tasks import check_plate_in_database
@@ -65,5 +66,13 @@ def car_registration_view(request):
     else:
         form = CarRegistrationForm()
     return render(request, 'car_registration.html', {'form': form})
+
+
+
+
+@staff_member_required
+def admin_dashboard_view(request):
+    return render(request, 'admin_dashboard.html')
+
 
 check_plate_in_database()
