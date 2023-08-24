@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from .forms import CarRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Car,PendingNumberPlate, DeletedNumberPlate, ActivatedNumberPlate
+from django.urls import reverse
 # Create your views here.
 from .models import Plate
 from .tasks import check_plate_in_database
@@ -85,7 +86,10 @@ def admin_dashboard_view(request):
     pending_number_plates = PendingNumberPlate.objects.all()
     deleted_number_plates = DeletedNumberPlate.objects.all()
     users_with_number_plates = []
-
+    if 'logout' in request.POST:
+        context ={'logout_url':reverse('logout')}
+        logout(request)
+        return redirect('login')
     for user in User.objects.all():
         user_info = {'user': user, 'number_plates': Car.objects.filter(owner=user)}
         users_with_number_plates.append(user_info)

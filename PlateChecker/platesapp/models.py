@@ -14,6 +14,13 @@ class Car(models.Model):
     numberplate = models.CharField(max_length=20)
     brand = models.CharField(max_length=100)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    status_choices = [
+        ('Pending','Pending'),
+        ('Activated','Activated'),
+        ('Deleted','Deleted')
+
+    ]
+    status = models.CharField(max_length=10,choices=status_choices, default='Pending')
     def __str__(self):
         return self.owner,self.numberplate
 

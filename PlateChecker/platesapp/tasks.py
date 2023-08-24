@@ -1,9 +1,9 @@
 # platesapp/tasks.py
-from background_task import background
+from django_background_tasks4 import 
 from platesapp.models import Plate
 from django.core.mail import send_mail
 from .models import Plate
-
+from platesapp.models import ActivatedNumberPlate
 #------------------------------------------------------------------------------
 import serial
 import numpy as np
@@ -24,7 +24,7 @@ from google.cloud import vision
 def check_plate_in_database(*args, **kwargs):
     # Initialize the Google Cloud Vision client
     client = vision.ImageAnnotatorClient()
-    ser = serial.Serial('COM5', 9600)
+    ser = serial.Serial('/dev/tty/ACM0', 9600)
     def receive_image(width, height):
         
         image_data = ser.read(height*width)
