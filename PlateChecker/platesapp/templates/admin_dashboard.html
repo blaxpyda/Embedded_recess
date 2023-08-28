@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="logout" value="true">
+  <button type="submit">Logout</button>
+</form>
+  <h2>Admin Dashboard</h2>
+  
+  <h3>Pending Number Plates</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Number Plate</th>
+        <th>Email</th>
+        <th>Activate</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for plate in pending_number_plates %}
+        <tr>
+          <td>{{ plate.numberplate }}</td>
+          <td>{{ plate.owner_email }}</td>
+          <td><a href="{% url 'activate_number_plate' plate.pk %}">Activate</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Deleted Number Plates</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Number Plate</th>
+        <th>Email</th>
+        <th>Activate</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for plate in deleted_number_plates %}
+        <tr>
+          <td>{{ plate.numberplate }}</td>
+          <td>{{ plate.owner_email }}</td>
+          <td><a href="{% url 'activate_number_plate' plate.pk %}">Activate</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Users with Number Plates</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Number Plates</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user_info in users_with_number_plates %}
+        <tr>
+          <td>{{ user_info.user.username }}</td>
+          <td>{{ user_info.user.email }}</td>
+          <td>
+            <ul>
+              {% for car in user_info.number_plates %}
+                <li>{{ car.numberplate }} - Status: {{ car.status }}</li>  {# Replace with the actual status field in your Car model #}
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
